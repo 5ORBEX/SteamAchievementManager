@@ -1,0 +1,300 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ACHIEVS_DESCR_HEAD" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="ACHIEVS_FILTER" xml:space="preserve">
+    <value>Поиск</value>
+  </data>
+  <data name="ACHIEVS_FILTER_CLEAR" xml:space="preserve">
+    <value>Очистить</value>
+  </data>
+  <data name="ACHIEVS_FILTER_CLEAR_TOOLTIP" xml:space="preserve">
+    <value>Очистить фильтрацию достижений</value>
+  </data>
+  <data name="ACHIEVS_FILTER_TOOLTIP" xml:space="preserve">
+    <value>Поиск достижений по введенному тексту</value>
+  </data>
+  <data name="ACHIEVS_HEAD" xml:space="preserve">
+    <value>Достижения</value>
+  </data>
+  <data name="ACHIEVS_NAME_HEAD" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="COMMIT" xml:space="preserve">
+    <value>Применить Изменения</value>
+  </data>
+  <data name="COMMIT_TOOLTIP" xml:space="preserve">
+    <value>Сохранить изменения достижений и статистики для текущей игры</value>
+  </data>
+  <data name="DISPLAY_MSG" xml:space="preserve">
+    <value>Показано {0} игр. Всего {1} игр.</value>
+  </data>
+  <data name="DLG_CONFIRM_RESET_MSG" xml:space="preserve">
+    <value>Подтверждаете ли Вы сброс?</value>
+  </data>
+  <data name="DLG_EXCEPT_ERROR" xml:space="preserve">
+    <value>Вы вызвали исключительную ошибку!</value>
+  </data>
+  <data name="DLG_FAILED_START_SAM_GAME_ERROR" xml:space="preserve">
+    <value>Ошибка запуска SAM.Game.exe.</value>
+  </data>
+  <data name="DLG_FAILED_TO_RESET_ERROR" xml:space="preserve">
+    <value>Ошибка сброса статистик и достижений.</value>
+  </data>
+  <data name="DLG_FAMILY_SHARE_ERROR" xml:space="preserve">
+    <value>Если у вас есть игра через Family Share, она может быть заблокирована\n\nиз-за того, что учетная запись Family Share используется в игре.</value>
+  </data>
+  <data name="DLG_INVALID_ID_ERROR" xml:space="preserve">
+    <value>Пожалуйста, введите действительный ID игры.</value>
+  </data>
+  <data name="DLG_LOAD_STATS_ERROR" xml:space="preserve">
+    <value>Ошибка загрузки статистик игры.</value>
+  </data>
+  <data name="DLG_OWN_GAME_ERROR" xml:space="preserve">
+    <value>Вам не принадлежит эта игра.</value>
+  </data>
+  <data name="DLG_PARSE_ID_ERROR" xml:space="preserve">
+    <value>Ошибка получения ID приложения с аргументов командной строки.</value>
+  </data>
+  <data name="DLG_PROTECTED_ACHIEV_ERROR" xml:space="preserve">
+    <value>Это защищенное достижение и оно не может быть изменено с помощью Steam Achievement Manager.</value>
+  </data>
+  <data name="DLG_RESET_ACHIEVES_MSG" xml:space="preserve">
+    <value>Хотите ли Вы сбросить достижения тоже?</value>
+  </data>
+  <data name="DLG_RESET_STATS_MSG" xml:space="preserve">
+    <value>Хотите ли Вы сбросить статистики?</value>
+  </data>
+  <data name="DLG_STEAM_DIR_ERROR" xml:space="preserve">
+    <value>Этот инструмент не может быть запущен из каталога Steam.</value>
+  </data>
+  <data name="DLG_STEAM_NOT_RUN_ERROR" xml:space="preserve">
+    <value>Steam не запущен. Пожалуйста, запустите Steam, а затем снова запустите этот инструмент.</value>
+  </data>
+  <data name="DLG_STORE_ACHIEV_STATE_ERROR" xml:space="preserve">
+    <value>Произошла ошибка при установке состояния для достижения {0}, сохранение прекращено.</value>
+  </data>
+  <data name="DLG_STORE_ERROR" xml:space="preserve">
+    <value>Произошла ошибка вро время сохранения изменений</value>
+  </data>
+  <data name="DLG_STORE_MSG" xml:space="preserve">
+    <value>Сохранено {0} достижений и {1} статистик.</value>
+  </data>
+  <data name="DLG_STORE_STAT_STATE_ERROR" xml:space="preserve">
+    <value>Произошла ошибка при установке состояния для статистики {0}, сохранение прекращено.</value>
+  </data>
+  <data name="DOWNLOAD" xml:space="preserve">
+    <value>Загрузка</value>
+  </data>
+  <data name="DOWNLOAD_ACHIEVS_ICONS" xml:space="preserve">
+    <value>Загрузка иконок достижений: {0}</value>
+  </data>
+  <data name="DOWNLOAD_GAMES_ICONS" xml:space="preserve">
+    <value>Загрузка логотипов игр: {0}</value>
+  </data>
+  <data name="EXTRA_HEAD" xml:space="preserve">
+    <value>Экстра</value>
+  </data>
+  <data name="GAME_FILTER" xml:space="preserve">
+    <value>Фильтрация игр</value>
+  </data>
+  <data name="GAME_STATUS_RETRIEVE_ERROR" xml:space="preserve">
+    <value>Ошибка при получении статистики: {0}.</value>
+  </data>
+  <data name="GAME_STATUS_RETRIEVE_MSG" xml:space="preserve">
+    <value>Найдено {0} достижений и {1} статистик.</value>
+  </data>
+  <data name="GAME_STATUS_RETRIEVING_PROCESS" xml:space="preserve">
+    <value>Получение информации об статистике...</value>
+  </data>
+  <data name="GAME_STATUS_SCHEMA_ERROR" xml:space="preserve">
+    <value>Ошибка при загрузке схемы статистики игрока.</value>
+  </data>
+  <data name="GAME_STATUS_STATS_ERROR" xml:space="preserve">
+    <value>Ошибка при обработке статистики.</value>
+  </data>
+  <data name="INVERT_ACHIEVS" xml:space="preserve">
+    <value>Инвертировать всё</value>
+  </data>
+  <data name="INVERT_ACHIEVS_TOOLTIP" xml:space="preserve">
+    <value>Инвертировать все достижения</value>
+  </data>
+  <data name="LOCK_ACHIEVS" xml:space="preserve">
+    <value>Заблокировать всё</value>
+  </data>
+  <data name="LOCK_ACHIEVS_TOOLTIP" xml:space="preserve">
+    <value>Заблокировать все достижения</value>
+  </data>
+  <data name="NAME_HEAD" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="REFRESH_ACHIEVS" xml:space="preserve">
+    <value>Обновить</value>
+  </data>
+  <data name="REFRESH_ACHIEVS_TOOLTIP" xml:space="preserve">
+    <value>Обновить достижения и статистику для текущей игры</value>
+  </data>
+  <data name="REFRESH_GAMES" xml:space="preserve">
+    <value>Обновить</value>
+  </data>
+  <data name="REFRESH_GAMES_TOOLTIP" xml:space="preserve">
+    <value>Обновить список игр</value>
+  </data>
+  <data name="RESET" xml:space="preserve">
+    <value>Сбросить</value>
+  </data>
+  <data name="RESET_TOOLTIP" xml:space="preserve">
+    <value>Сбросить достижения и/или статистику для текущей игры</value>
+  </data>
+  <data name="SEARCH_GAME" xml:space="preserve">
+    <value>Поиск Игры</value>
+  </data>
+  <data name="SEARCH_GAME_TOOLTIP" xml:space="preserve">
+    <value>Поиск игры по введенному ID</value>
+  </data>
+  <data name="SHOW_DEMOS" xml:space="preserve">
+    <value>Отображать &amp;демо-версии</value>
+  </data>
+  <data name="SHOW_GAMES" xml:space="preserve">
+    <value>Отображать &amp;игры</value>
+  </data>
+  <data name="SHOW_JUNK" xml:space="preserve">
+    <value>Отображать &amp;прочее</value>
+  </data>
+  <data name="SHOW_MODS" xml:space="preserve">
+    <value>Отображать &amp;моды</value>
+  </data>
+  <data name="STATS_HEAD" xml:space="preserve">
+    <value>Статистика</value>
+  </data>
+  <data name="UNDERSTAND_MSG" xml:space="preserve">
+    <value>Я понимаю, что, изменяя значения статистики, я могу напортачить и не могу винить никого, кроме себя.</value>
+  </data>
+  <data name="UNLOCK_ACHIEVS" xml:space="preserve">
+    <value>Разблокировать всё</value>
+  </data>
+  <data name="UNLOCK_ACHIEVS_TOOLTIP" xml:space="preserve">
+    <value>Разблокировать все достижения</value>
+  </data>
+  <data name="VALUE_HEAD" xml:space="preserve">
+    <value>Значение</value>
+  </data>
+</root>
