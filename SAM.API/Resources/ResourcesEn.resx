@@ -138,6 +138,9 @@
   <data name="ACHIEVS_NAME_HEAD" xml:space="preserve">
     <value>Name</value>
   </data>
+  <data name="APP_LANG" xml:space="preserve">
+    <value>App language</value>
+  </data>
   <data name="COMMIT" xml:space="preserve">
     <value>Commit Changes</value>
   </data>
@@ -210,11 +213,17 @@
   <data name="DOWNLOAD_GAMES_ICONS" xml:space="preserve">
     <value>Downloading game logos: {0}</value>
   </data>
+  <data name="ENG_LANG" xml:space="preserve">
+    <value>English</value>
+  </data>
   <data name="EXTRA_HEAD" xml:space="preserve">
     <value>Extra</value>
   </data>
   <data name="GAME_FILTER" xml:space="preserve">
     <value>Filter</value>
+  </data>
+  <data name="GAME_LANG" xml:space="preserve">
+    <value>Game language</value>
   </data>
   <data name="GAME_STATUS_RETRIEVE_ERROR" xml:space="preserve">
     <value>Error while retrieving stats: {0}.</value>
@@ -264,11 +273,20 @@
   <data name="RESET_TOOLTIP" xml:space="preserve">
     <value>Reset achievements and/or statistics for active game</value>
   </data>
+  <data name="RUS_LANG" xml:space="preserve">
+    <value>Русский</value>
+  </data>
   <data name="SEARCH_GAME" xml:space="preserve">
     <value>Search Game</value>
   </data>
   <data name="SEARCH_GAME_TOOLTIP" xml:space="preserve">
     <value>Search game by entered ID</value>
+  </data>
+  <data name="SEARCH_LABEL" xml:space="preserve">
+    <value>Search:</value>
+  </data>
+  <data name="SETTINGS" xml:space="preserve">
+    <value>Settings</value>
   </data>
   <data name="SHOW_DEMOS" xml:space="preserve">
     <value>Show &amp;demos</value>
@@ -284,6 +302,9 @@
   </data>
   <data name="STATS_HEAD" xml:space="preserve">
     <value>Statistics</value>
+  </data>
+  <data name="UKR_LANG" xml:space="preserve">
+    <value>Українська</value>
   </data>
   <data name="UNDERSTAND_MSG" xml:space="preserve">
     <value>I understand by modifying the values of stats, I may screw things up and can't blame anyone but myself.</value>

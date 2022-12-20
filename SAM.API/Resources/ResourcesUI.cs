@@ -1,26 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
+using System.IO;
 using System.Resources;
-using System.Text;
+using System.Web.Script.Serialization;
+
+using SAM.API.Types;
 
 namespace SAM.API.Resources
 {
-    public class ResourcesUI
+    public static class ResourcesUI
     {
-        public static string CurrentLanguage
+        public const string SettingsFileName = "settings.json";
+
+        public static LangType AppLanguage
         {
-            get
+            get => settings.AppLanguage;
+            set
             {
-                switch (currentLanguage)
+                if (settings.AppLanguage != value)
                 {
-                    case Lang.RU:
-                        return "russian";
-                    case Lang.UA:
-                        return "ukrainian";
-                    default:
-                        return "english";
+                    settings.AppLanguage = value;
+                    SaveSettings();
+                }
+            }
+        }
+
+        public static LangType GameLanguage
+        {
+            get => settings.GameLanguage;
+            set
+            {
+                if (settings.GameLanguage != value)
+                {
+                    settings.GameLanguage = value;
+                    SaveSettings();                   
                 }
             }
         }
@@ -85,9 +99,114 @@ namespace SAM.API.Resources
         public static string DLG_CONFIRM_RESET_MSG => GetString("DLG_CONFIRM_RESET_MSG");
         public static string DLG_FAILED_TO_RESET_ERROR => GetString("DLG_FAILED_TO_RESET_ERROR");
         public static string DLG_PROTECTED_ACHIEV_ERROR => GetString("DLG_PROTECTED_ACHIEV_ERROR");
+        public static string SETTINGS => GetString("SETTINGS");
+        public static string APP_LANG => GetString("APP_LANG");
+        public static string GAME_LANG => GetString("GAME_LANG");
+        public static string ENG_LANG => GetString("ENG_LANG");
+        public static string RUS_LANG => GetString("RUS_LANG");
+        public static string UKR_LANG => GetString("UKR_LANG");
+        public static string SEARCH_LABEL => GetString("SEARCH_LABEL");
 
         static ResourcesUI()
         {
+            if (settings == null)
+            {
+                settings = new Settings();
+            }
+
+            UpdateSettings();
+            InitializeResourcesManagers();
+        }
+
+        public static void UpdateSettings()
+        {
+            if (File.Exists(SettingsFileName))
+            {
+                var json = File.ReadAllText(SettingsFileName);
+                if (!string.IsNullOrEmpty(json))
+                {
+                    if (serializer == null)
+                    {
+                        serializer = new JavaScriptSerializer();
+                    }
+
+                    try
+                    {
+                        settings = serializer.Deserialize<Settings>(json);
+                    }
+                    catch
+                    {
+                        GetDefaultSettings();
+                    }
+                }
+                else
+                {
+                    GetDefaultSettings();
+                }
+            }
+            else
+            {
+                GetDefaultSettings();
+            }
+        }
+
+        public static string GetLangName(this LangType lang)
+        {
+            switch (lang)
+            {
+                case LangType.RU:
+                    return "russian";
+                case LangType.UA:
+                    return "ukrainian";
+                default:
+                    return "english";
+            }
+        }
+
+        private static void InitializeResourcesManagers()
+        {
+            resourcesMgrs = new Dictionary<LangType, ResourceManager>
+            {
+                { LangType.EN, new ResourceManager("SAM.API.Resources.ResourcesEn", typeof(ResourcesUI).Assembly) },
+                { LangType.RU, new ResourceManager("SAM.API.Resources.ResourcesRu", typeof(ResourcesUI).Assembly) },
+                { LangType.UA, new ResourceManager("SAM.API.Resources.ResourcesUa", typeof(ResourcesUI).Assembly) }
+            };
+        }
+
+        private static string GetString(string name)
+        {
+            try
+            {
+                return (resourcesMgrs[AppLanguage]).GetString(name);
+            }
+            catch
+            {
+                try
+                {
+                    return (resourcesMgrs[LangType.EN]).GetString(name);
+                }
+                catch
+                {
+                    switch (AppLanguage)
+                    {
+                        case LangType.RU:
+                            return "Ошибка";
+                        case LangType.UA:
+                            return "Помилка";
+                        default:
+                            return "Error";
+                    }
+                }
+            }
+        }
+
+        private static void GetDefaultSettings()
+        {
+            if (settings == null)
+            {
+                settings = new Settings();
+            }
+
             var systemCulture = CultureInfo.CurrentCulture.ToString();
             switch (systemCulture)
             {
@@ -98,65 +217,36 @@ namespace SAM.API.Resources
                 case "ru-MD":
                 case "ru-RU":
                 case "ru-UA":
-                    currentLanguage = Lang.RU;
+                    settings.AppLanguage = LangType.RU;
+                    settings.GameLanguage = LangType.RU;
                     break;
                 case "uk":
                 case "uk-UA":
-                    currentLanguage = Lang.UA;
+                    settings.AppLanguage = LangType.UA;
+                    settings.GameLanguage = LangType.UA;
                     break;
                 default:
-                    currentLanguage = Lang.EN;
+                    settings.AppLanguage = LangType.EN;
+                    settings.GameLanguage = LangType.EN;
                     break;
             }
 
-            InitializeResourcesManagers();
+            SaveSettings();
         }
 
-        private static void InitializeResourcesManagers()
+        private static void SaveSettings()
         {
-            resourcesMgrs = new Dictionary<Lang, ResourceManager>
+            if (serializer == null)
             {
-                { Lang.EN, new ResourceManager("SAM.API.Resources.ResourcesEn", typeof(ResourcesUI).Assembly) },
-                { Lang.RU, new ResourceManager("SAM.API.Resources.ResourcesRu", typeof(ResourcesUI).Assembly) },
-                { Lang.UA, new ResourceManager("SAM.API.Resources.ResourcesUa", typeof(ResourcesUI).Assembly) }
-            };
-        }
-
-        private static string GetString(string name)
-        {
-            try
-            {
-                return (resourcesMgrs[currentLanguage]).GetString(name);
+                serializer = new JavaScriptSerializer();
             }
-            catch
-            {
-                try
-                {
-                    return (resourcesMgrs[Lang.EN]).GetString(name);
-                }
-                catch
-                {
-                    switch (currentLanguage)
-                    {
-                        case Lang.RU:
-                            return "Ошибка";
-                        case Lang.UA:
-                            return "Помилка";
-                        default:
-                            return "Error";
-                    }
-                }
-            }
+
+            var json = serializer.Serialize(settings);
+            File.WriteAllText(SettingsFileName, json);
         }
 
-        private static Lang currentLanguage;
-        private static Dictionary<Lang, ResourceManager> resourcesMgrs;
-
-        private enum Lang
-        {
-            EN,
-            RU,
-            UA
-        }
+        private static Settings settings;
+        private static Dictionary<LangType, ResourceManager> resourcesMgrs;
+        private static JavaScriptSerializer serializer;
     }
 }

@@ -1,5 +1,6 @@
 ﻿using SAM.API;
 using SAM.API.Resources;
+using System.Windows.Forms;
 
 namespace SAM.Picker
 {
@@ -34,6 +35,7 @@ namespace SAM.Picker
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.ToolStripSeparator _ToolStripSeparator1;
             System.Windows.Forms.ToolStripSeparator _ToolStripSeparator2;
+            System.Windows.Forms.ToolStripSeparator _ToolStripSeparator3;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GamePicker));
             this._LogoImageList = new System.Windows.Forms.ImageList(this.components);
             this._CallbackTimer = new System.Windows.Forms.Timer(this.components);
@@ -46,6 +48,15 @@ namespace SAM.Picker
             this._FilterDemosMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._FilterModsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._FilterJunkMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._SettingsDropDownButton = new System.Windows.Forms.ToolStripDropDownButton();
+            this._SettingsAppLangsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._SettingsAppLangEnMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._SettingsAppLangRuMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._SettingsAppLangUaMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._SettingsGameLangsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._SettingsGameLangEnMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._SettingsGameLangRuMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._SettingsGameLangUaMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._GameListView = new SAM.Picker.DoubleBufferedListView();
             this._PickerStatusStrip = new System.Windows.Forms.StatusStrip();
             this._PickerStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -54,6 +65,7 @@ namespace SAM.Picker
             this._ListWorker = new System.ComponentModel.BackgroundWorker();
             _ToolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             _ToolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            _ToolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this._PickerToolStrip.SuspendLayout();
             this._PickerStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -67,6 +79,11 @@ namespace SAM.Picker
             // 
             _ToolStripSeparator2.Name = "_ToolStripSeparator2";
             _ToolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // _ToolStripSeparator3
+            // 
+            _ToolStripSeparator3.Name = "_ToolStripSeparator3";
+            _ToolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
             // _LogoImageList
             // 
@@ -87,7 +104,9 @@ namespace SAM.Picker
             this._AddGameTextBox,
             this._AddGameButton,
             _ToolStripSeparator2,
-            this._FilterDropDownButton});
+            this._FilterDropDownButton,
+            _ToolStripSeparator3,
+            this._SettingsDropDownButton});
             this._PickerToolStrip.Location = new System.Drawing.Point(0, 0);
             this._PickerToolStrip.Name = "_PickerToolStrip";
             this._PickerToolStrip.Size = new System.Drawing.Size(742, 25);
@@ -167,6 +186,94 @@ namespace SAM.Picker
             this._FilterJunkMenuItem.Text = ResourcesUI.SHOW_JUNK;
             this._FilterJunkMenuItem.CheckedChanged += new System.EventHandler(this.OnFilterUpdate);
             // 
+            // _SettingsDropDownButton
+            // 
+            this._SettingsDropDownButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._SettingsDropDownButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[]
+            {
+                this._SettingsAppLangsMenuItem,
+                this._SettingsGameLangsMenuItem
+            });
+            this._SettingsDropDownButton.Image = global::SAM.Picker.Resources.Settings;
+            this._SettingsDropDownButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._SettingsDropDownButton.Name = "_SettingsDropDownButton";
+            this._SettingsDropDownButton.Size = new System.Drawing.Size(29, 22);
+            this._SettingsDropDownButton.Text = ResourcesUI.SETTINGS;
+            // 
+            // _SettingsAppLangsMenuItem
+            // 
+            this._SettingsAppLangsMenuItem.CheckOnClick = false;
+            this._SettingsAppLangsMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[]
+            {
+                _SettingsAppLangEnMenuItem,
+                _SettingsAppLangRuMenuItem,
+                _SettingsAppLangUaMenuItem
+            });
+            this._SettingsAppLangsMenuItem.Name = "_SettingsAppLangsMenuItem";
+            this._SettingsAppLangsMenuItem.Size = new System.Drawing.Size(150, 22);
+            this._SettingsAppLangsMenuItem.Text = ResourcesUI.APP_LANG;
+            // 
+            // _SettingsAppLangEnMenuItem
+            // 
+            this._SettingsAppLangEnMenuItem.CheckOnClick = true;
+            this._SettingsAppLangEnMenuItem.Name = "_SettingsAppLangEnMenuItem";
+            this._SettingsAppLangEnMenuItem.Size = new System.Drawing.Size(150, 22);
+            this._SettingsAppLangEnMenuItem.Text = ResourcesUI.ENG_LANG;
+            this._SettingsAppLangEnMenuItem.Click += new System.EventHandler(this.OnAppLanguageUpdate);
+            // 
+            // _SettingsAppLangRuMenuItem
+            // 
+            this._SettingsAppLangRuMenuItem.CheckOnClick = true;
+            this._SettingsAppLangRuMenuItem.Name = "_SettingsAppLangRuMenuItem";
+            this._SettingsAppLangRuMenuItem.Size = new System.Drawing.Size(150, 22);
+            this._SettingsAppLangRuMenuItem.Text = ResourcesUI.RUS_LANG;
+            this._SettingsAppLangRuMenuItem.Click += new System.EventHandler(this.OnAppLanguageUpdate);
+            // 
+            // _SettingsAppLangUaMenuItem
+            // 
+            this._SettingsAppLangUaMenuItem.CheckOnClick = true;
+            this._SettingsAppLangUaMenuItem.Name = "_SettingsAppLangUaMenuItem";
+            this._SettingsAppLangUaMenuItem.Size = new System.Drawing.Size(150, 22);
+            this._SettingsAppLangUaMenuItem.Text = ResourcesUI.UKR_LANG;
+            this._SettingsAppLangUaMenuItem.Click += new System.EventHandler(this.OnAppLanguageUpdate);
+            // 
+            // _SettingsGameLangsMenuItem
+            // 
+            this._SettingsGameLangsMenuItem.CheckOnClick = false;
+            this._SettingsGameLangsMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[]
+            {
+                _SettingsGameLangEnMenuItem,
+                _SettingsGameLangRuMenuItem,
+                _SettingsGameLangUaMenuItem
+            });
+            this._SettingsGameLangsMenuItem.Name = "_SettingsGameLangsMenuItem";
+            this._SettingsGameLangsMenuItem.Size = new System.Drawing.Size(150, 22);
+            this._SettingsGameLangsMenuItem.Text = ResourcesUI.GAME_LANG;
+            // 
+            // _SettingsGameLangEnMenuItem
+            // 
+            this._SettingsGameLangEnMenuItem.CheckOnClick = true;
+            this._SettingsGameLangEnMenuItem.Name = "_SettingsGameLangEnMenuItem";
+            this._SettingsGameLangEnMenuItem.Size = new System.Drawing.Size(150, 22);
+            this._SettingsGameLangEnMenuItem.Text = ResourcesUI.ENG_LANG;
+            this._SettingsGameLangEnMenuItem.Click += new System.EventHandler(this.OnGameLanguageUpdate);
+            // 
+            // _SettingsGameLangRuMenuItem
+            // 
+            this._SettingsGameLangRuMenuItem.CheckOnClick = true;
+            this._SettingsGameLangRuMenuItem.Name = "_SettingsGameLangRuMenuItem";
+            this._SettingsGameLangRuMenuItem.Size = new System.Drawing.Size(150, 22);
+            this._SettingsGameLangRuMenuItem.Text = ResourcesUI.RUS_LANG;
+            this._SettingsGameLangRuMenuItem.Click += new System.EventHandler(this.OnGameLanguageUpdate);
+            // 
+            // _SettingsGameLangUaMenuItem
+            // 
+            this._SettingsGameLangUaMenuItem.CheckOnClick = true;
+            this._SettingsGameLangUaMenuItem.Name = "_SettingsGameLangUaMenuItem";
+            this._SettingsGameLangUaMenuItem.Size = new System.Drawing.Size(150, 22);
+            this._SettingsGameLangUaMenuItem.Text = ResourcesUI.UKR_LANG;
+            this._SettingsGameLangUaMenuItem.Click += new System.EventHandler(this.OnGameLanguageUpdate);
+            // 
             // _GameListView
             // 
             this._GameListView.BackColor = System.Drawing.Color.Black;
@@ -236,7 +343,7 @@ namespace SAM.Picker
             this.Controls.Add(this._PickerToolStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "GamePicker";
-            this.Text = "Steam Achievement Manager 7.0";
+            this.Text = "Steam Achievement Manager 7.0.27";
             this._PickerToolStrip.ResumeLayout(false);
             this._PickerToolStrip.PerformLayout();
             this._PickerStatusStrip.ResumeLayout(false);
@@ -260,6 +367,19 @@ namespace SAM.Picker
         private System.Windows.Forms.ToolStripMenuItem _FilterJunkMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _FilterDemosMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _FilterModsMenuItem;
+
+        private System.Windows.Forms.ToolStripDropDownButton _SettingsDropDownButton;
+
+        private System.Windows.Forms.ToolStripMenuItem _SettingsAppLangsMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _SettingsAppLangEnMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _SettingsAppLangRuMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _SettingsAppLangUaMenuItem;
+
+        private System.Windows.Forms.ToolStripMenuItem _SettingsGameLangsMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _SettingsGameLangEnMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _SettingsGameLangRuMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _SettingsGameLangUaMenuItem;
+
         private System.Windows.Forms.StatusStrip _PickerStatusStrip;
         private System.Windows.Forms.ToolStripStatusLabel _DownloadStatusLabel;
         private System.Windows.Forms.ToolStripStatusLabel _PickerStatusLabel;

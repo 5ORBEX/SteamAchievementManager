@@ -6,20 +6,18 @@ All original functionality are same.
 New features:
 - Color of icons changed to blue. Fixed SAM.Game icon issue.
 
-![Icons](https://github.com/S0RBEX/SteamAchievementManager/blob/master/Icon.png)
+![Icons](https://github.com/5ORBEX/SteamAchievementManager/blob/master/Icon.png)
 
 - Added possibility to sort achievements by status "Locked/Unlocked". Press on the "Name" header in the achievements table to do it.
 
-![Sort](https://github.com/S0RBEX/SteamAchievementManager/blob/master/Sort.gif)
+![Sort](https://github.com/5ORBEX/SteamAchievementManager/blob/master/Sort.gif)
 
 - Added possibility to search achievements by part of their name or description.
 
-![Search](https://github.com/S0RBEX/SteamAchievementManager/blob/master/Search.gif)
+![Search](https://github.com/5ORBEX/SteamAchievementManager/blob/master/Search.gif)
 
-- Added additional localization: Russian, Ukrainian. Language of SAM will be applied according to Windows system language.
+- Added additional localization: Russian, Ukrainian. Language of SAM and achievements can be changed from the settings menu.
 
-![Ru1](https://github.com/S0RBEX/SteamAchievementManager/blob/master/Ru1.png)
-![Ru2](https://github.com/S0RBEX/SteamAchievementManager/blob/master/Ru2.png)
-![Ru3](https://github.com/S0RBEX/SteamAchievementManager/blob/master/Ru3.png)
+![Localization](https://github.com/5ORBEX/SteamAchievementManager/blob/master/Localization.gif)
 
-[Download latest release](https://github.com/S0RBEX/SteamAchievementManager/releases/latest).
+[Download latest release](https://github.com/5ORBEX/SteamAchievementManager/releases/latest).

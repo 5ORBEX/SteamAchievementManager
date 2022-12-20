@@ -1,15 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net40</TargetFramework>
+    <TargetFramework>net462</TargetFramework>
     <AssemblyTitle>Steam Achievement Manager Picker</AssemblyTitle>
     <Company>Gibbed</Company>
     <Authors>Gibbed</Authors>
     <Description>A game picker for the Steam Achievement Manager.</Description>
     <Copyright>Copyright © Gibbed 2019</Copyright>
-    <Version>7.0.0</Version>
-    <AssemblyVersion>7.0.0.0</AssemblyVersion>
-    <FileVersion>7.0.0.0</FileVersion>
+    <Version>7.0.27.0</Version>
+    <AssemblyVersion>7.0.27.0</AssemblyVersion>
+    <FileVersion>7.0.27.0</FileVersion>
     <RepositoryUrl>https://github.com/gibbed/SteamAchievementManager/</RepositoryUrl>
     <RepositoryType>it</RepositoryType>
     <ApplicationIcon>SAM.ico</ApplicationIcon>
@@ -26,6 +26,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="DoubleBufferedListView.cs">

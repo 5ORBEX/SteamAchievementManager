@@ -138,6 +138,9 @@
   <data name="ACHIEVS_NAME_HEAD" xml:space="preserve">
     <value>Ім'я</value>
   </data>
+  <data name="APP_LANG" xml:space="preserve">
+    <value>Мова програми</value>
+  </data>
   <data name="COMMIT" xml:space="preserve">
     <value>Застосувати Зміни</value>
   </data>
@@ -210,11 +213,17 @@
   <data name="DOWNLOAD_GAMES_ICONS" xml:space="preserve">
     <value>Завантаження логотипів ігр: {0}</value>
   </data>
+  <data name="ENG_LANG" xml:space="preserve">
+    <value>English</value>
+  </data>
   <data name="EXTRA_HEAD" xml:space="preserve">
     <value>Екстра</value>
   </data>
   <data name="GAME_FILTER" xml:space="preserve">
     <value>Фільтрування ігр</value>
+  </data>
+  <data name="GAME_LANG" xml:space="preserve">
+    <value>Мова ігр</value>
   </data>
   <data name="GAME_STATUS_RETRIEVE_ERROR" xml:space="preserve">
     <value>Помилка при отриманні статистики: {0}.</value>
@@ -264,11 +273,20 @@
   <data name="RESET_TOOLTIP" xml:space="preserve">
     <value>Скинути досягнення і/або статистику для поточної гри</value>
   </data>
+  <data name="RUS_LANG" xml:space="preserve">
+    <value>Русский</value>
+  </data>
   <data name="SEARCH_GAME" xml:space="preserve">
     <value>Пошук Гри</value>
   </data>
   <data name="SEARCH_GAME_TOOLTIP" xml:space="preserve">
     <value>Пошук гри по введенному ID</value>
+  </data>
+  <data name="SEARCH_LABEL" xml:space="preserve">
+    <value>Пошук:</value>
+  </data>
+  <data name="SETTINGS" xml:space="preserve">
+    <value>Налаштування</value>
   </data>
   <data name="SHOW_DEMOS" xml:space="preserve">
     <value>Відображати &amp;демо-версії</value>
@@ -284,6 +302,9 @@
   </data>
   <data name="STATS_HEAD" xml:space="preserve">
     <value>Статистика</value>
+  </data>
+  <data name="UKR_LANG" xml:space="preserve">
+    <value>Українська</value>
   </data>
   <data name="UNDERSTAND_MSG" xml:space="preserve">
     <value>Я розумію, що, змінюючи значення статистики, я можу щось зламати і не можу звинувачувати нікого, крім себе.</value>

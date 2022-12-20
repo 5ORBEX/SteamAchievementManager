@@ -20,8 +20,8 @@
  *    distribution.
  */
 
-using SAM.API;
 using SAM.API.Resources;
+using SAM.API.Types;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -33,6 +33,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Windows.Forms;
+using System.Windows.Threading;
 using System.Xml.XPath;
 using APITypes = SAM.API.Types;
 
@@ -61,7 +62,36 @@ namespace SAM.Picker
             this._LogosAttempted = new List<string>();
             this._LogoQueue = new ConcurrentQueue<GameInfo>();
 
+            currentAppLanguage = ResourcesUI.AppLanguage;
+            currentGameLanguage = ResourcesUI.GameLanguage;
+
             this.InitializeComponent();
+
+            this._SettingsAppLangEnMenuItem.Checked = currentAppLanguage == LangType.EN;
+            this._SettingsAppLangRuMenuItem.Checked = currentAppLanguage == LangType.RU;
+            this._SettingsAppLangUaMenuItem.Checked = currentAppLanguage == LangType.UA;
+
+            this._SettingsGameLangEnMenuItem.Checked = currentGameLanguage == LangType.EN;
+            this._SettingsGameLangRuMenuItem.Checked = currentGameLanguage == LangType.RU;
+            this._SettingsGameLangUaMenuItem.Checked = currentGameLanguage == LangType.UA;
+
+            string strExeFilePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            string strWorkPath = Path.GetDirectoryName(strExeFilePath);
+
+            var watcher = new FileSystemWatcher(strWorkPath);
+            watcher.NotifyFilter = NotifyFilters.Attributes
+                | NotifyFilters.CreationTime
+                | NotifyFilters.DirectoryName
+                | NotifyFilters.FileName
+                | NotifyFilters.LastAccess
+                | NotifyFilters.LastWrite
+                | NotifyFilters.Security
+                | NotifyFilters.Size;
+
+            watcher.Changed += OnFileChanged;
+            watcher.Created += OnFileCreated;
+            watcher.Filter = ResourcesUI.SettingsFileName;
+            watcher.EnableRaisingEvents = true;
 
             var blank = new Bitmap(this._LogoImageList.ImageSize.Width, this._LogoImageList.ImageSize.Height);
             using (var g = Graphics.FromImage(blank))
@@ -433,5 +463,163 @@ namespace SAM.Picker
         {
             this.RefreshGames();
         }
+
+        private void OnAppLanguageUpdate(object sender, EventArgs e)
+        {
+            foreach (var item in this._SettingsAppLangsMenuItem.DropDownItems)
+            {
+                if (item == sender)
+                {
+                    (item as ToolStripMenuItem).CheckState = CheckState.Checked;
+                }
+                else
+                {
+                    (item as ToolStripMenuItem).CheckState = CheckState.Unchecked;
+                }
+            }
+
+            if (sender == this._SettingsAppLangRuMenuItem)
+            {
+                currentAppLanguage = LangType.RU;
+            }
+            else if (sender == this._SettingsAppLangUaMenuItem)
+            {
+                currentAppLanguage = LangType.UA;
+            }
+            else
+            {
+                currentAppLanguage = LangType.EN;
+            }
+
+            if (ResourcesUI.AppLanguage != currentAppLanguage)
+            {
+                ResourcesUI.AppLanguage = currentAppLanguage;
+            }
+        }
+
+        private void OnGameLanguageUpdate(object sender, EventArgs e)
+        {
+            foreach (var item in this._SettingsGameLangsMenuItem.DropDownItems)
+            {
+                if (item == sender)
+                {
+                    (item as ToolStripMenuItem).CheckState = CheckState.Checked;
+                }
+                else
+                {
+                    (item as ToolStripMenuItem).CheckState = CheckState.Unchecked;
+                }
+            }
+
+            if (sender == this._SettingsGameLangRuMenuItem)
+            {
+                currentGameLanguage = LangType.RU;
+            }
+            else if (sender == this._SettingsGameLangUaMenuItem)
+            {
+                currentGameLanguage = LangType.UA;
+            }
+            else
+            {
+                currentGameLanguage = LangType.EN;
+            }
+
+            if (ResourcesUI.GameLanguage != currentGameLanguage)
+            {
+                ResourcesUI.GameLanguage = currentGameLanguage;
+            }
+        }
+
+        private void OnFileCreated(object sender, FileSystemEventArgs e)
+        {
+            dispatcher?.Invoke(() => {
+                ResourcesUI.UpdateSettings();
+                OnAppLanguageChanged();
+                OnGameLanguageChanged();
+            });
+        }
+
+        private void OnFileChanged(object sender, FileSystemEventArgs e)
+        {
+            dispatcher?.Invoke(() => {
+                ResourcesUI.UpdateSettings();
+                OnAppLanguageChanged();
+                OnGameLanguageChanged();
+            });
+        }
+
+        private void OnAppLanguageChanged()
+        {
+            currentAppLanguage = ResourcesUI.AppLanguage;
+
+            switch (currentAppLanguage)
+            {
+                case LangType.RU:
+                    this._SettingsAppLangEnMenuItem.CheckState = CheckState.Unchecked;
+                    this._SettingsAppLangRuMenuItem.CheckState = CheckState.Checked;
+                    this._SettingsAppLangUaMenuItem.CheckState = CheckState.Unchecked;
+                    break;
+                case LangType.UA:
+                    this._SettingsAppLangEnMenuItem.CheckState = CheckState.Unchecked;
+                    this._SettingsAppLangRuMenuItem.CheckState = CheckState.Unchecked;
+                    this._SettingsAppLangUaMenuItem.CheckState = CheckState.Checked;
+                    break;
+                default:
+                    this._SettingsAppLangEnMenuItem.CheckState = CheckState.Checked;
+                    this._SettingsAppLangRuMenuItem.CheckState = CheckState.Unchecked;
+                    this._SettingsAppLangUaMenuItem.CheckState = CheckState.Unchecked;
+                    break;
+            }
+
+            this._PickerStatusLabel.Text = string.Format(ResourcesUI.DISPLAY_MSG, this._GameListView.Items.Count, this._Games.Count);
+            this._DownloadStatusLabel.Text = string.Format(ResourcesUI.DOWNLOAD_GAMES_ICONS, this._LogoQueue.Count);
+            this._RefreshGamesButton.Text = ResourcesUI.REFRESH_GAMES;
+            this._RefreshGamesButton.ToolTipText = ResourcesUI.REFRESH_GAMES_TOOLTIP;
+            this._AddGameButton.Text = ResourcesUI.SEARCH_GAME;
+            this._AddGameButton.ToolTipText = ResourcesUI.SEARCH_GAME_TOOLTIP;
+            this._FilterDropDownButton.Text = ResourcesUI.GAME_FILTER;
+            this._FilterGamesMenuItem.Text = ResourcesUI.SHOW_GAMES;
+            this._FilterDemosMenuItem.Text = ResourcesUI.SHOW_DEMOS;
+            this._FilterModsMenuItem.Text = ResourcesUI.SHOW_MODS;
+            this._FilterJunkMenuItem.Text = ResourcesUI.SHOW_JUNK;
+            this._SettingsDropDownButton.Text = ResourcesUI.SETTINGS;
+            this._SettingsAppLangsMenuItem.Text = ResourcesUI.APP_LANG;
+            this._SettingsAppLangEnMenuItem.Text = ResourcesUI.ENG_LANG;
+            this._SettingsAppLangRuMenuItem.Text = ResourcesUI.RUS_LANG;
+            this._SettingsAppLangUaMenuItem.Text = ResourcesUI.UKR_LANG;
+            this._SettingsGameLangsMenuItem.Text = ResourcesUI.GAME_LANG;
+            this._SettingsGameLangEnMenuItem.Text = ResourcesUI.ENG_LANG;
+            this._SettingsGameLangRuMenuItem.Text = ResourcesUI.RUS_LANG;
+            this._SettingsGameLangUaMenuItem.Text = ResourcesUI.UKR_LANG;
+            this._DownloadStatusLabel.Text = ResourcesUI.DOWNLOAD;
+        }
+
+        private void OnGameLanguageChanged()
+        {
+            currentGameLanguage = ResourcesUI.GameLanguage;
+
+            switch (currentGameLanguage)
+            {
+                case LangType.RU:
+                    this._SettingsGameLangEnMenuItem.CheckState = CheckState.Unchecked;
+                    this._SettingsGameLangRuMenuItem.CheckState = CheckState.Checked;
+                    this._SettingsGameLangUaMenuItem.CheckState = CheckState.Unchecked;
+                    break;
+                case LangType.UA:
+                    this._SettingsGameLangEnMenuItem.CheckState = CheckState.Unchecked;
+                    this._SettingsGameLangRuMenuItem.CheckState = CheckState.Unchecked;
+                    this._SettingsGameLangUaMenuItem.CheckState = CheckState.Checked;
+                    break;
+                default:
+                    this._SettingsGameLangEnMenuItem.CheckState = CheckState.Checked;
+                    this._SettingsGameLangRuMenuItem.CheckState = CheckState.Unchecked;
+                    this._SettingsGameLangUaMenuItem.CheckState = CheckState.Unchecked;
+                    break;
+            }
+        }
+
+        private static LangType currentAppLanguage;
+        private static LangType currentGameLanguage;
+        private readonly Dispatcher dispatcher = Dispatcher.CurrentDispatcher;
     }
 }
